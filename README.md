@@ -1,4 +1,4 @@
-# claude-dev-loop
+# jt-dev-loop
 
 Reusable Claude Code development loop extracted from the workflow developed for Haunted Halls.
 
@@ -35,7 +35,7 @@ examples/
 
 ## Test from a clone
 
-Clone this private repository, then validate it:
+Clone this repository, then validate it:
 
 ```bash
 claude plugin validate .
@@ -44,32 +44,32 @@ claude plugin validate .
 Run one Claude Code session with the checkout loaded:
 
 ```bash
-claude --plugin-dir /path/to/claude-dev-loop
+claude --plugin-dir /path/to/jt-dev-loop
 ```
 
 Invoke the loop explicitly with:
 
 ```text
-/claude-dev-loop:dev-loop
+/jt-dev-loop:dev-loop
 ```
 
 Plugin subagents appear under scoped names:
-- `claude-dev-loop:reviewer`
-- `claude-dev-loop:director`
+- `jt-dev-loop:reviewer`
+- `jt-dev-loop:director`
 
 ## Make it available in every local project
 
 Claude Code auto-loads plugins stored as plugin directories under `~/.claude/skills/`. A convenient setup is to make the Git checkout itself the installed copy:
 
 ```bash
-git clone git@github.com:jtesolin/claude-dev-loop.git ~/.claude/skills/claude-dev-loop
-claude plugin validate ~/.claude/skills/claude-dev-loop
+git clone https://github.com/jtesolin/jt-dev-loop.git ~/.claude/skills/jt-dev-loop
+claude plugin validate ~/.claude/skills/jt-dev-loop
 ```
 
 Then start a new Claude Code session (or use `/reload-plugins` when applicable). Future updates are simply:
 
 ```bash
-cd ~/.claude/skills/claude-dev-loop
+cd ~/.claude/skills/jt-dev-loop
 git pull
 ```
 
