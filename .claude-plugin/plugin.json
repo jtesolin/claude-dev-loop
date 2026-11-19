@@ -1,7 +1,7 @@
 {
-  "name": "claude-dev-loop",
+  "name": "jt-dev-loop",
   "description": "A reusable implementation, independent review, director disposition, remediation, and re-review loop for Claude Code.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": {
     "name": "Jack Tesolin"
   }

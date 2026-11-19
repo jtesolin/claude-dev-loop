@@ -72,7 +72,7 @@ For PR-backed mode, completed Director output uses the generic marker and schema
 A sufficient Director result must be a complete record:
 
 ```markdown
-<!-- claude-dev-loop-review-disposition -->
+<!-- jt-dev-loop-review-disposition -->
 Claude disposition schema: 1
 Claude disposition owner: <authenticated-login>
 Claude disposition record: director

@@ -5,7 +5,7 @@ description: Run a reusable implementation, independent review, Director disposi
 
 # Generic Claude development loop
 
-The main Claude Code session is the implementation owner. Keep implementation context in the main session. Use the plugin's isolated `claude-dev-loop:reviewer` and `claude-dev-loop:director` agents for independent review and disposition.
+The main Claude Code session is the implementation owner. Keep implementation context in the main session. Use the plugin's isolated `jt-dev-loop:reviewer` and `jt-dev-loop:director` agents for independent review and disposition.
 
 The implementation session keeps its current session effort. The reviewer and Director definitions independently run at `effort: high`.
 
@@ -103,7 +103,7 @@ For PR-backed review:
 
 For local mode, provide the reviewer the explicit task, current diff, project policy/instructions, and validation results. Local mode has no durable GitHub authority.
 
-Invoke `claude-dev-loop:reviewer` with fresh context. Supply:
+Invoke `jt-dev-loop:reviewer` with fresh context. Supply:
 - scope/acceptance criteria;
 - change identity and diff;
 - trusted-base project requirements;
@@ -116,7 +116,7 @@ Preserve the reviewer's complete coverage summary and candidate findings.
 
 ## 5. Director disposition
 
-Invoke `claude-dev-loop:director` after every reviewer result, including a clean review.
+Invoke `jt-dev-loop:director` after every reviewer result, including a clean review.
 
 Supply the Director the exact reviewed head/change identity and the validated recovery state for that head: either `none` or the latest valid same-head recovery record that explicitly cleared a prior terminal escalation while preserving the highest retry state. The Director must never infer recovery from conversation history alone.
 
@@ -135,7 +135,7 @@ Acceptance-criterion and trusted-base completion findings are non-deferable: fix
 
 Use top-level PR/issue comments with this marker:
 
-`<!-- claude-dev-loop-review-disposition -->`
+`<!-- jt-dev-loop-review-disposition -->`
 
 Current contract is **Claude disposition schema 1**.
 
@@ -166,7 +166,7 @@ The comment author must equal the owner.
 In PR-backed mode, explicit human recovery is persisted as a new append-only record:
 
 ```markdown
-<!-- claude-dev-loop-review-disposition -->
+<!-- jt-dev-loop-review-disposition -->
 Claude disposition schema: 1
 Claude disposition owner: <authenticated-login>
 Claude disposition record: recovery
@@ -188,7 +188,7 @@ If the Director requests targeted coverage and retry state is `not used`, let `D
 1. Re-fetch the PR head/change identity and require it equals `D`. If it differs, do not create a reservation; stop for ownership resolution. After ownership is resolved, the new head requires a fresh ordinary review.
 2. In PR mode, write a new reservation record whose `PR head evaluated` and retry SHA are both exactly `D`, with retry state `reserved` and the Director's narrow instruction.
 3. Re-fetch the head immediately before launching the targeted reviewer and require it still equals `D`. Also require the reservation itself names `D`. On mismatch, leave the prior-head reservation unchanged and stop for ownership resolution; never transfer it to the new head.
-4. Launch exactly one targeted `claude-dev-loop:reviewer` using the diff/evidence for exactly `D`.
+4. Launch exactly one targeted `jt-dev-loop:reviewer` using the diff/evidence for exactly `D`.
 5. After successful launch returns a task/handle, re-fetch the PR head and require it still equals `D` before mutating the reservation. If it differs, leave the reservation unchanged, discard the targeted result as authority for the new head, and stop for ownership resolution.
 6. Mutate only that exact-`D` reservation from `reserved` to `used`.
 7. Run the Director on the targeted result with reviewed head `D`, and require the current PR head still equals `D` before persisting the result.
