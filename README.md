@@ -62,7 +62,7 @@ Plugin subagents appear under scoped names:
 Claude Code auto-loads plugins stored as plugin directories under `~/.claude/skills/`. A convenient setup is to make the Git checkout itself the installed copy:
 
 ```bash
-git clone https://github.com/jtesolin/jt-dev-loop.git ~/.claude/skills/jt-dev-loop
+git clone git@github.com:jtesolin/jt-dev-loop.git ~/.claude/skills/jt-dev-loop
 claude plugin validate ~/.claude/skills/jt-dev-loop
 ```
 
