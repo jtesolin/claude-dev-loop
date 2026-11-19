@@ -1,6 +1,6 @@
 # Project policy contract
 
-The `claude-dev-loop` plugin is intentionally project-agnostic. A repository can extend it with an optional:
+The `jt-dev-loop` plugin is intentionally project-agnostic. A repository can extend it with an optional:
 
 `.claude/dev-loop-policy.md`
 
